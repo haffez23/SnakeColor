@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class snakeMouvement : MonoBehaviour {
+public class SnakeMouvement : MonoBehaviour {
 
     public GameObject gc;
 

@@ -1,22 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
 	public enum GameState { MENU,GAME,GAMEOVER}
     public static GameState gameState;
 
-    public snakeMouvement SM;
-    public blockManager BM;
+    public SnakeMouvement SM;
+    public BlockManager BM;
 
     public CanvasGroup MENU_CG;
     public CanvasGroup GAME_CG;
     public CanvasGroup GAMEOVER_CG;
 
-    public GUIText scoreText;
-    public GUIText MenuScoreText;
-    public GUIText BestScoreText;
+    public Text scoreText;
+    public Text MenuScoreText;
+    public Text BestScoreText;
     public static int SCORE;
     public static int BESTSCORE;
 
@@ -48,7 +49,7 @@ public class GameController : MonoBehaviour {
 
     }
 
-    public void setMenu()
+    public void SetMenu()
     {
         gameState = GameState.MENU;
 
@@ -85,7 +86,7 @@ public class GameController : MonoBehaviour {
         speedAdded = false;
         SM.speed = 3;
         PlayerPrefs.SetInt("BESTSCORE", BESTSCORE);
-        BM.SimpleBoxPosition.Clear();
+       // BM.SimpleBoxPosition.Clear();
 
     }
 
