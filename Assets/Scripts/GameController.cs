@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour {
             Destroy(g);
         }
         SM.SpawnBodyPart();
+        
         BM.SetPreviousPosAfterGameover();
         speedAdded = false;
         SM.speed = 3;
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour {
        // BM.SimpleBoxPosition.Clear();
 
     }
+  
 
     public void EnableCG(CanvasGroup cg)
     {
