@@ -1,13 +1,10 @@
 ﻿<Properties StartupConfiguration="{31844C41-FA47-A8EA-5C25-6FC5B232F9EA}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HitBoxBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AutoDestroy.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameController.cs" Line="20" Column="16" />
-      <File FileName="Assets/Scripts/BlockManager.cs" Line="9" Column="5" />
-      <File FileName="Assets/Scripts/FoodManager.cs" Line="9" Column="5" />
-      <File FileName="Assets/Scripts/HitBoxBehavior.cs" Line="103" Column="15" />
-      <File FileName="Assets/Scripts/FoodBehavior.cs" Line="17" Column="91" />
-      <File FileName="Assets/Scripts/SnakeMouvement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SnakeMovement.cs" Line="66" Column="5" />
+      <File FileName="Assets/Scripts/BlocksManager.cs" Line="86" Column="4" />
+      <File FileName="Assets/Scripts/AutoDestroy.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
