@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\AutoDestroyBar.cs" />
     <Compile Include="Assets\Scripts\BlocksManager.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\ColorBehaviour.cs" />
     <Compile Include="Assets\Scripts\FoodBehaviour.cs" />
     <Compile Include="Assets\Scripts\FoodManager.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />

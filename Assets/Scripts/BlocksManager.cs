@@ -72,25 +72,47 @@ public class BlocksManager : MonoBehaviour {
 
 
             Vector3 SpawnPos = new Vector3(x, y, 0);
+            GameObject boxInstance;
 
 
             if (isBarrierExist)
             {
                 if (i == -2 || i == 2 || i == 0)
                 {
-                    GameObject boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+                     boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
 
                 }
                 else
                 {
-                    GameObject boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
+                     boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
 
                 }
             }
             else{
-                GameObject boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+                 boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
 
             }
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            if (currentScene.Equals("LEVEL3"))
+            {
+                Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
+
+
+                for (int k = 0; k < alpha.Count; k++)
+                {
+                    int temp = alpha[k];
+                    int randomIndex = Random.Range(k, alpha.Count);
+                    alpha[k] = alpha[randomIndex];
+                    alpha[randomIndex] = temp;
+                    thisImageColor = new Color32(255, (byte)alpha[k], 0, 255);
+
+                }
+                boxInstance.GetComponent<SpriteRenderer>().color = thisImageColor;
+
+            }
+
+
 
 
 
