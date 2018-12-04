@@ -9,7 +9,7 @@ public class FoodBehaviour : MonoBehaviour {
 	public int foodAmount;
 
 	void Start () {
-		foodAmount = Random.Range (0,10);
+		foodAmount = Random.Range (1,5);
 		transform.GetComponentInChildren <TextMesh> ().text = "" + foodAmount;
 	}
 	
@@ -20,6 +20,7 @@ public class FoodBehaviour : MonoBehaviour {
 		}
 	}
 	private void OnTriggerEnter2D(Collider2D collider){
-		Destroy (this.gameObject);
+
+        Destroy (this.gameObject);
 	}
 }

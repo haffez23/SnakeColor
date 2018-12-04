@@ -1,4 +1,0 @@
-#Wed Nov 28 23:59:39 CET 2018
-base.0=/Users/arshavin/Documents/GitHub/SnakeColor/Temp/gradleOut/build/intermediates/transforms/dex/release/0
-path.0=classes.dex
-renamed.0=classes.dex

@@ -41,10 +41,10 @@ public class FoodManager : MonoBehaviour {
 
 		for (int i = -2; i < 3; i++) {
 			float x = 2 * i * distBetweenBlocks;
-			float y = 0;
+            float y = Random.Range(0.4f,0.8f);
 
 			if (SM.transform.childCount > 0) {
-				y = (int)SM.transform.GetChild (0).position.y + distBetweenBlocks * 2 + 10;
+				y = (int)SM.transform.GetChild (0).position.y + distBetweenBlocks * 2 + 18;
 			}
 
 			Vector3 SpawnPos = new Vector3 (x, y, 0);

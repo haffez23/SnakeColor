@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 	public enum GameState{MENU, GAME, GAMEOVER};
@@ -22,6 +23,8 @@ public class GameController : MonoBehaviour {
 	public Text BestScoreText;
 	public static int SCORE;
 	public static int BESTSCORE;
+    public int level=1;
+    int nextlevel =1900 ;
 
 	[Header("SomeBool")]
 	bool speedAdded;
@@ -34,10 +37,15 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Update(){
+        nextlevel++;
 		ScoreText.text= SCORE + "";
 		MenuScoreText.text= SCORE + "";
 
-		if (SCORE > BESTSCORE) {
+        if (Input.GetKey(KeyCode.D) /*|| Input.GetTouch(0).phase == TouchPhase.Began*/)
+            SetGame();
+
+
+        if (SCORE > BESTSCORE) {
 			BESTSCORE = SCORE;
 			BestScoreText.text= BESTSCORE + "";
 			if (!speedAdded && SCORE > 150) {
@@ -45,6 +53,23 @@ public class GameController : MonoBehaviour {
 				speedAdded = true;
 			}
 		}
+        if (nextlevel == 2000)
+        {
+            switch (level)
+            {
+                case 1: 
+                    SceneManager.LoadScene("LEVEL2", LoadSceneMode.Additive);
+                    break;
+                default:
+                    SceneManager.LoadScene("LEVEL2", LoadSceneMode.Single);
+                    break;
+
+
+
+
+            }
+        }
+
 	}
 
 	public void SetMenu(){
@@ -52,7 +77,7 @@ public class GameController : MonoBehaviour {
 		EnableCG (Menu_CG);
 		DisableCG (GAME_CG);
 		DisableCG (GAMEOVER_CG);
-
+       
 	}
 
 	public void SetGame(){

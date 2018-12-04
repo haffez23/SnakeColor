@@ -12,8 +12,9 @@ public class CameraMovement : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-		if (SnakeContainer.childCount > 1) {
-			transform.position = Vector3.Slerp (transform.position,SnakeContainer.GetChild(1).position + new Vector3(0,2f,-10),0.1f);
-		}
-	}
+        if (SnakeContainer.childCount > 0)
+        {
+            transform.position = Vector3.Slerp(transform.position, new Vector3(transform.position.x, SnakeContainer.GetChild(0).position.y, 0) + new Vector3(0, 0, -1), 0.1f);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AutoDestroy : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class AutoDestroy : MonoBehaviour {
 	public int life;
 	public float lifeForColor;
 	public TextMesh thisTextMesh;
+    public int maxRange; 
+    public int minRange;
 
 	GameObject[] ToDestroy;
 	GameObject[] ToUnParent;
@@ -24,7 +27,7 @@ public class AutoDestroy : MonoBehaviour {
 		SM = GameObject.FindGameObjectWithTag("SnakeManager").GetComponent <SnakeMovement> ();
 		life = Random.Range (1,GameController.SCORE/2 + 5);
 		if (transform.tag == "SimpleBox") {
-			life = Random.Range (5, 50);
+            life = Random.Range (minRange, maxRange);
 		}
 
 		lifeForColor = life;
@@ -35,8 +38,11 @@ public class AutoDestroy : MonoBehaviour {
 		ToUnParent = new GameObject[transform.childCount];
 
 		StartCoroutine ("EnableSomeBars");
-
-		SetBoxColor ();
+        string currentScene = SceneManager.GetActiveScene().name;
+        if(currentScene.Equals("LEVEL 1") || currentScene.Equals("LEVEL2"))
+        {
+            SetBoxColor();
+        }
 
 		initialPos = transform.position;
 		dontMove = false;

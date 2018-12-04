@@ -33,7 +33,6 @@ public class HitBoxBehaviour : MonoBehaviour {
 
 			collision.transform.GetComponent <AutoDestroy> ().life -= 1;
 			collision.transform.GetComponent <AutoDestroy> ().UpdateText ();
-			collision.transform.GetComponent <AutoDestroy> ().SetBoxColor ();
 
 			SM.BodyParts.Remove (SM.BodyParts [0]);
 
@@ -53,7 +52,6 @@ public class HitBoxBehaviour : MonoBehaviour {
 
 			collision.transform.GetComponent <AutoDestroy> ().life -= 1;
 			collision.transform.GetComponent <AutoDestroy> ().UpdateText ();
-			collision.transform.GetComponent <AutoDestroy> ().SetBoxColor ();
 
 			SM.BodyParts.Remove (SM.BodyParts [0]);
 

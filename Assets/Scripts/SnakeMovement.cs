@@ -99,23 +99,23 @@ public class SnakeMovement : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetMouseButtonDown (0)) {
-			mousePreviousPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		} else if (Input.GetMouseButtonDown (1)) {
-			if (BodyParts.Count > 0 && Mathf.Abs (BodyParts [0].position.x) < maxX) {
-				mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				float deltaMousePos = Mathf.Abs (mousePreviousPos.x - mouseCurrentPos.x);
-				float sign = Mathf.Sign (mousePreviousPos.x - mouseCurrentPos.x);
-
-				BodyParts [0].GetComponent <Rigidbody2D> ().AddForce (Vector2.right * rotationSpeed * deltaMousePos * -sign);
-				mousePreviousPos = mouseCurrentPos;
-
-  		} else if (BodyParts.Count > 0 && BodyParts [0].position.x > maxX) {
-				BodyParts [0].position = new Vector3 (maxX - 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
-			} else if (BodyParts.Count > 0 && BodyParts [0].position.x < maxX) {
-				BodyParts [0].position = new Vector3 (-maxX + 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
-			}
-		}
+//		if (Input.GetMouseButtonDown (0)) {
+//			mousePreviousPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+//		} else if (Input.GetMouseButtonDown (1)) {
+//			if (BodyParts.Count > 0 && Mathf.Abs (BodyParts [0].position.x) < maxX) {
+//				mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+//				float deltaMousePos = Mathf.Abs (mousePreviousPos.x - mouseCurrentPos.x);
+//				float sign = Mathf.Sign (mousePreviousPos.x - mouseCurrentPos.x);
+//
+//				BodyParts [0].GetComponent <Rigidbody2D> ().AddForce (Vector2.right * rotationSpeed * deltaMousePos * -sign);
+//				mousePreviousPos = mouseCurrentPos;
+//
+//			} else if (BodyParts.Count > 0 && BodyParts [0].position.x > maxX) {
+//				BodyParts [0].position = new Vector3 (maxX - 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+//			} else if (BodyParts.Count > 0 && BodyParts [0].position.x < maxX) {
+//				BodyParts [0].position = new Vector3 (-maxX + 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+//			}
+//		}
 
 		for (int i = 1; i < BodyParts.Count; i++) {
 			curBodyPart = BodyParts [i];

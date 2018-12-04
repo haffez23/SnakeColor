@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlocksManager : MonoBehaviour {
 
@@ -10,21 +11,26 @@ public class BlocksManager : MonoBehaviour {
 
 	[Header("Block Prefab")]
 	public GameObject BlockPrefab;
+    public GameObject BlockWithoutBarrierPrefab;
 
 	[Header("Time to SpawnDelegate Management")]
 	public float minSpawnTime;
 	public float maxSpawnTime;
 	private float thisTime;
 	private float randomTime;
+    public bool isBarrierExist;
 
 	[Header("Snake Value for spawning")]
 	public int minSpawnDist;
 	Vector2 previousSnakePos;
 	public List<Vector3> SimpleBoxPosition = new List<Vector3> ();
 
-	void Start(){
+    private  List<int> alpha = new List<int> { 0, 128,255 };
+
+
+    void Start(){
 		thisTime = 0;
-		spawnBarrier ();
+		SpawnBarrier ();
 		randomTime = Random.Range (minSpawnTime, maxSpawnTime);
 	}
 
@@ -39,31 +45,57 @@ public class BlocksManager : MonoBehaviour {
 			}
 			if (SM.transform.childCount > 0) {
 				if (SM.transform.GetChild (0).position.y - previousSnakePos.y > minSpawnDist) {
-					spawnBarrier ();
+                    SpawnBarrier ();
 				}
 			}
 		}
 	}
 
-	public void spawnBarrier(){
+	public void SpawnBarrier(){
 		float screenWidthWorldPos = Camera.main.orthographicSize * Screen.width / Screen.height;
 		float distBetweenBlocks = screenWidthWorldPos / 5;
 
-		for (int i = -2; i < 3; i++) {
-			float x = 2 * i * distBetweenBlocks;
-			float y = 0;
+        for (int i = -2; i < 3; i++)
+        {
+            float x = 2 * i * distBetweenBlocks;
+            float y = 0;
 
-			if (SM.transform.childCount > 0) {
-				y = (int)SM.transform.GetChild (0).position.y + distBetweenBlocks * 2 + distanceSnakeBarrier;
-				if (Screen.height / Screen.width == 4 / 3) {
-					y *= 4 / 3f;
-				}
-			}
 
-			Vector3 SpawnPos = new Vector3 (x, y, 0);
-			GameObject boxInstance = Instantiate (BlockPrefab,SpawnPos,Quaternion.identity,transform);
+            if (SM.transform.childCount > 0)
+            {
+                y = (int)SM.transform.GetChild(0).position.y + distBetweenBlocks * 2 + distanceSnakeBarrier;
+                if (Screen.height / Screen.width == 4 / 3)
+                {
+                    y *= 4 / 3f;
+                }
+            }
 
-			if (SM.transform.childCount > 0) {
+
+            Vector3 SpawnPos = new Vector3(x, y, 0);
+
+
+            if (isBarrierExist)
+            {
+                if (i == -2 || i == 2 || i == 0)
+                {
+                    GameObject boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+
+                }
+                else
+                {
+                    GameObject boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
+
+                }
+            }
+            else{
+                GameObject boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+
+            }
+
+
+
+
+            if (SM.transform.childCount > 0) {
 				previousSnakePos = SM.transform.GetChild (0).position;
 			}
 		}
@@ -91,18 +123,56 @@ public class BlocksManager : MonoBehaviour {
 			SimpleBoxPosition.Add (SpawnPos);
 		} else {
 			for(int k= 0;k<SimpleBoxPosition.Count;k++){
-				if (SpawnPos == SimpleBoxPosition [k]) {
-					canSpawnBlock = false;
+                if (SpawnPos.x - distBetweenBlocks < SimpleBoxPosition[k].x && SpawnPos.x + distBetweenBlocks > SimpleBoxPosition[k].x)
+                {
+                    canSpawnBlock = false;
 				}
 			}
 		}
 		GameObject boxInstance;
 		if (canSpawnBlock) {
 			SimpleBoxPosition.Add (SpawnPos);
-			boxInstance = Instantiate (BlockPrefab, SpawnPos, Quaternion.identity, transform);
-			boxInstance.name = "SimpleBox";
+            if (isBarrierExist)
+            {
+                if (SimpleBoxPosition.Count % 2 != 0 || SimpleBoxPosition.Count == 1)
+                {
+                    boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+                }
+                else
+                {
+                    boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
+
+                }
+            }
+            else{
+                boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+
+            }
+            boxInstance.name = "SimpleBox";
 			boxInstance.tag = "SimpleBox";
-			boxInstance.layer = LayerMask.NameToLayer ("Default");
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            if(currentScene.Equals("LEVEL3"))
+            {
+                Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
+
+
+                for (int i = 0; i < alpha.Count; i++)
+                {
+                    int temp = alpha[i];
+                    int randomIndex = Random.Range(i, alpha.Count);
+                    alpha[i] = alpha[randomIndex];
+                    alpha[randomIndex] = temp;
+                    thisImageColor = new Color32(255, (byte)alpha[i], 0, 255);
+
+                }
+                boxInstance.GetComponent<SpriteRenderer>().color = thisImageColor;
+
+            }
+
+
+
+            boxInstance.layer = LayerMask.NameToLayer ("Default");
 			boxInstance.AddComponent<Rigidbody2D>();
 			boxInstance.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -116,5 +186,7 @@ public class BlocksManager : MonoBehaviour {
 	public void PreviousPosInvoke(){
 		previousSnakePos.y = SM.transform.GetChild (0).position.y;
 	}
+
+
 
 }
