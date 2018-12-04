@@ -25,8 +25,9 @@ public class BlocksManager : MonoBehaviour {
 	Vector2 previousSnakePos;
 	public List<Vector3> SimpleBoxPosition = new List<Vector3> ();
 
-    private  List<int> alpha = new List<int> { 0, 128,255 };
 
+    private List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE" };
+    private readonly int colorTimeChange = 0;
 
     void Start(){
 		thisTime = 0;
@@ -93,24 +94,32 @@ public class BlocksManager : MonoBehaviour {
 
             }
             string currentScene = SceneManager.GetActiveScene().name;
+            Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
 
-            if (currentScene.Equals("LEVEL3"))
+
+
+            if (currentScene.Equals("LEVEL1") || currentScene.Equals("LEVEL2"))
             {
-                Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
-
-
-                for (int k = 0; k < alpha.Count; k++)
-                {
-                    int temp = alpha[k];
-                    int randomIndex = Random.Range(k, alpha.Count);
-                    alpha[k] = alpha[randomIndex];
-                    alpha[randomIndex] = temp;
-                    thisImageColor = new Color32(255, (byte)alpha[k], 0, 255);
-
-                }
-                boxInstance.GetComponent<SpriteRenderer>().color = thisImageColor;
+                thisImageColor = new Color32(255, 0, 0, 255);
 
             }
+
+            else if (currentScene.Equals("LEVEL3"))
+            {
+
+
+                for (int k = 0; k < colorsName.Count; k++)
+                {
+                    string temp = colorsName[k];
+                    int randomIndex = Random.Range(k, colorsName.Count);
+                    colorsName[k] = colorsName[randomIndex];
+                    colorsName[randomIndex] = temp;
+                    thisImageColor = ColorList.getColor(colorsName[randomIndex]);
+
+                }
+
+            }
+            boxInstance.GetComponent<SpriteRenderer>().color = thisImageColor;
 
 
 
@@ -173,24 +182,32 @@ public class BlocksManager : MonoBehaviour {
             boxInstance.name = "SimpleBox";
 			boxInstance.tag = "SimpleBox";
             string currentScene = SceneManager.GetActiveScene().name;
+            Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
 
-            if(currentScene.Equals("LEVEL3"))
+
+
+            if (currentScene.Equals("LEVEL1") || currentScene.Equals("LEVEL2"))
             {
-                Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
-
-
-                for (int i = 0; i < alpha.Count; i++)
-                {
-                    int temp = alpha[i];
-                    int randomIndex = Random.Range(i, alpha.Count);
-                    alpha[i] = alpha[randomIndex];
-                    alpha[randomIndex] = temp;
-                    thisImageColor = new Color32(255, (byte)alpha[i], 0, 255);
-
-                }
-                boxInstance.GetComponent<SpriteRenderer>().color = thisImageColor;
+                thisImageColor = new Color32(255,0, 0, 255);
 
             }
+
+            else if (currentScene.Equals("LEVEL3"))
+            {
+
+                for (int k = 0; k < colorsName.Count; k++)
+                {
+                    string temp = colorsName[k];
+                    int randomIndex = Random.Range(k, colorsName.Count);
+                    colorsName[k] = colorsName[randomIndex];
+                    colorsName[randomIndex] = temp;
+                    thisImageColor = ColorList.getColor(colorsName[randomIndex]);
+
+                }
+
+            }
+            boxInstance.GetComponent<SpriteRenderer>().color = thisImageColor;
+
 
 
 

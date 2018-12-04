@@ -23,7 +23,7 @@ public class HitBoxBehaviour : MonoBehaviour {
 				SM.PartsAmountTextMesh.transform.position = SM.BodyParts [1].position + new Vector3 (0, 0.5f, 0);
 			} else if (SM.BodyParts.Count == 1) {
 				SM.PartsAmountTextMesh.transform.parent = null;
-			}
+            }
 
 			SM.SnakeParticle.Stop ();
 			SM.SnakeParticle.transform.position = collision.contacts [0].point;

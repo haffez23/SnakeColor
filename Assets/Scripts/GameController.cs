@@ -29,21 +29,42 @@ public class GameController : MonoBehaviour {
 	[Header("SomeBool")]
 	bool speedAdded;
 
-	void Start(){
+
+    [Header("Color parameters")]
+    public GameObject textGameObject;
+    private Text textColor;
+    private Color color;
+    private List<Color32> colors = new List<Color32>{ ColorList.red, ColorList.magenta, ColorList.blue , ColorList.green 
+        ,ColorList.yellow, ColorList.cyan };
+    private List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE"};
+    private int colorTimeChange = 0;
+    public int changetime;
+
+
+    void Start(){
+        textColor = textGameObject.GetComponent<Text>();
 		SetMenu ();
 		SCORE = 0;
 		speedAdded = false;
 		BESTSCORE = PlayerPrefs.GetInt ("BESTSCORE");
-	}
+        InvokeColorChange();
 
-	void Update(){
+    }
+
+
+    public void InvokeColorChange()
+    {
+        Invoke("AddColorToTextColor", 0.1f);
+    }
+
+    void Update(){
         nextlevel++;
 		ScoreText.text= SCORE + "";
 		MenuScoreText.text= SCORE + "";
 
         if (Input.GetKey(KeyCode.D) /*|| Input.GetTouch(0).phase == TouchPhase.Began*/)
             SetGame();
-
+        colorTimeChange++;
 
         if (SCORE > BESTSCORE) {
 			BESTSCORE = SCORE;
@@ -64,15 +85,21 @@ public class GameController : MonoBehaviour {
                     SceneManager.LoadScene("LEVEL2", LoadSceneMode.Single);
                     break;
 
-
-
-
             }
+
+        }
+        print(colorTimeChange);
+        if( colorTimeChange>changetime )
+        {
+            InvokeColorChange();
+            colorTimeChange = 0;
+
         }
 
-	}
 
-	public void SetMenu(){
+    }
+
+    public void SetMenu(){
 		gameState = GameState.MENU;
 		EnableCG (Menu_CG);
 		DisableCG (GAME_CG);
@@ -133,4 +160,28 @@ public class GameController : MonoBehaviour {
 		cg.interactable = false;
 		cg.blocksRaycasts = false;
 	}
+
+
+    public void AddColorToTextColor()
+    {
+        Color32 thisImageColor = textColor.color;
+
+
+
+
+
+                int randomIndex = Random.Range(0, colorsName.Count);
+
+
+        print(colorsName[randomIndex]);
+            
+        textColor.text = colorsName[randomIndex];
+        print(ColorList.getColor(textColor.text));
+        thisImageColor = ColorList.getColor(textColor.text);
+            textColor.color = thisImageColor;
+
+
+
+
+    }
 }
