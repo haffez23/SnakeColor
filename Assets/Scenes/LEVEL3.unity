@@ -5955,6 +5955,7 @@ MonoBehaviour:
   BestScoreText: {fileID: 765463007}
   level: 3
   textGameObject: {fileID: 291848314}
+  levelLife: 100
   changetime: 1000
 --- !u!4 &1583326432
 Transform:

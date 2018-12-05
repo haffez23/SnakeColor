@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 	public static int SCORE;
 	public static int BESTSCORE;
     public int level=1;
-    int nextlevel =0 ;
+    int nextlevel ;
 
 	[Header("SomeBool")]
 	bool speedAdded;
@@ -34,14 +34,18 @@ public class GameController : MonoBehaviour {
     public GameObject textGameObject;
     private Text textColor;
     private Color color;
-    private List<Color32> colors = new List<Color32>{ ColorList.red, ColorList.magenta, ColorList.blue , ColorList.green 
+    public int levelLife;
+    private readonly List<Color32> colors = new List<Color32>{ ColorList.red, ColorList.magenta, ColorList.blue , ColorList.green 
         ,ColorList.yellow, ColorList.cyan };
-    private List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE"};
+    private readonly List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE"};
     private int colorTimeChange = 0;
     public int changetime;
 
 
+
+
     void Start(){
+        nextlevel = 0;
         textColor = textGameObject.GetComponent<Text>();
 		SetMenu ();
 		SCORE = 0;
@@ -74,13 +78,28 @@ public class GameController : MonoBehaviour {
 				speedAdded = true;
 			}
 		}
-        if (nextlevel == 2000)
+        if (nextlevel == levelLife)
         {
-            print("2000");
             switch (level)
             {
-                case 1: 
-                    SceneManager.LoadScene("LEVEL2", LoadSceneMode.Additive);
+                case 1:
+                    {
+                        SM.GetComponent<SnakeMovement>().SetInitialAmount(SM.BodyParts.Count);
+                        SceneManager.LoadScene("LEVEL2", LoadSceneMode.Single);
+                        break;
+                    }
+                case 2:{
+                        SM.GetComponent<SnakeMovement>().SetInitialAmount(SM.BodyParts.Count);
+                        SceneManager.LoadScene("LEVEL3", LoadSceneMode.Single);
+                        break;
+
+                    }
+
+                case 3:
+                    SceneManager.LoadScene("LEVEL4", LoadSceneMode.Single);
+                    break;
+                case 4:
+                    SceneManager.LoadScene("LEVEL1", LoadSceneMode.Single);
                     break;
                 default:
                     SceneManager.LoadScene("LEVEL2", LoadSceneMode.Single);

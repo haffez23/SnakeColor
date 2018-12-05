@@ -13,7 +13,8 @@ public class SnakeMovement : MonoBehaviour
     [Header("Some snake variable & strong")]
     public List<Transform> BodyParts = new List<Transform>();
     public float minDistance = 0.25f;
-    public int initialAmount;
+    public static int initialAmount;
+    public int amount;
     public float speed = 1;
     public float rotationSpeed = 50;
     public float LerpTimeX;
@@ -39,6 +40,8 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Particle System Management")]
     public ParticleSystem SnakeParticle;
+    private string currentScene ;
+
 
     [Header("Color parametres")]
     public Text textColor;
@@ -46,22 +49,37 @@ public class SnakeMovement : MonoBehaviour
     public  string snakeColor;
 
 
+     void Awake()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene.Equals("LEVEL1"))
+        {
+            SetInitialAmount(4);
+            amount = initialAmount;
+        }
+
+    }
 
 
     void Start()
     {
+
+        print(GetInitialAmount());
+    
+       
         firstPart = true;
-        for (int i = 0; i < initialAmount; i++)
+        for (int i = 0; i < GetInitialAmount(); i++)
         {
             Invoke("AddBodyPart", 0.1f);
         }
+
 
     }
 
     public void SpawnBodyPart()
     {
         firstPart = true;
-        for (int i = 0; i < initialAmount; i++)
+        for (int i = 0; i < GetInitialAmount(); i++)
         {
             Invoke("AddBodyPart", 0.1f);
         }
@@ -87,7 +105,6 @@ public class SnakeMovement : MonoBehaviour
             }
             PartsAmountTextMesh.text = transform.childCount + "";
         }
-        string currentScene = SceneManager.GetActiveScene().name;
 
         if (!currentScene.Equals("LEVEL1") && !currentScene.Equals("LEVEL2"))
         {
@@ -214,7 +231,19 @@ public class SnakeMovement : MonoBehaviour
 
 
 
-
-
+    public  int  GetInitialAmount()
+    {
+        return initialAmount;
     }
+
+
+    public  void SetInitialAmount(int  initial)
+    {
+        initialAmount = initial;
+    }
+
+
+
+
+}
 

@@ -8,8 +8,7 @@ public class AutoDestroy : MonoBehaviour {
 	[Header("SnakeManager")]
 	public SnakeMovement SM;
 
-	public int life;
-	public float lifeForColor;
+    public int life;
 	public TextMesh thisTextMesh;
     public int maxRange; 
     public int minRange;
@@ -29,7 +28,6 @@ public class AutoDestroy : MonoBehaviour {
             life = Random.Range (minRange, maxRange);
 		}
 
-		lifeForColor = life;
 		thisTextMesh = GetComponentInChildren<TextMesh> ();
 		thisTextMesh.text = "" + life;
 
@@ -38,7 +36,7 @@ public class AutoDestroy : MonoBehaviour {
 
 		StartCoroutine ("EnableSomeBars");
         string currentScene = SceneManager.GetActiveScene().name;
-
+        
 		initialPos = transform.position;
 		dontMove = false;
 	}
@@ -53,7 +51,6 @@ public class AutoDestroy : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
-		lifeForColor = life;
 		if (life <= 0) {
 			transform.GetComponent<SpriteRenderer> ().enabled = false;
 			transform.GetComponentInChildren<MeshRenderer> ().enabled = false;
@@ -75,7 +72,7 @@ public class AutoDestroy : MonoBehaviour {
 		int i = 0;
 		while (i < transform.childCount) {
 			if (transform.GetChild (i).tag == "Bar") {
-				int r = Random.Range (0, 6);
+				int r = Random.Range (0,6);
 				if (r == 1) {
 					ToUnParent [i] = transform.GetChild (i).gameObject;
 				} else {

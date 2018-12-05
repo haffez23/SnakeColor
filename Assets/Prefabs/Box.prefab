@@ -838,7 +838,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SM: {fileID: 0}
   life: 3
-  lifeForColor: 0
   thisTextMesh: {fileID: 0}
   maxRange: 1
   minRange: 10

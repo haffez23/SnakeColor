@@ -318,13 +318,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SM: {fileID: 1481286338}
-  distanceSnakeBarrier: 3
+  distanceSnakeBarrier: 6
   BlockPrefab: {fileID: 1021012123447272, guid: 2434a4f3a5a1649edae6b0aa3100e946,
     type: 2}
   BlockWithoutBarrierPrefab: {fileID: 1096814392544610, guid: b35e25ca288044272bc663e3a85084ab,
     type: 2}
   spawnTime: 100
-  isBarrierExist: 1
   minSpawnDist: 10
   SimpleBoxPosition: []
 --- !u!4 &170700446
@@ -708,8 +707,9 @@ MonoBehaviour:
   ScoreText: {fileID: 1999364674}
   MenuScoreText: {fileID: 1880405966}
   BestScoreText: {fileID: 741691274}
-  level: 3
+  level: 4
   textGameObject: {fileID: 1522750118}
+  levelLife: 2000
   changetime: 1000
 --- !u!4 &605803365
 Transform:
