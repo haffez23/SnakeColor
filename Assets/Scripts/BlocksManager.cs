@@ -14,9 +14,7 @@ public class BlocksManager : MonoBehaviour {
     public GameObject BlockWithoutBarrierPrefab;
 
 	[Header("Time to SpawnDelegate Management")]
-	private float thisTime;
     public float spawnTime;
-    public bool isBarrierExist;
 
 	[Header("Snake Value for spawning")]
 	public int minSpawnDist;
@@ -26,19 +24,16 @@ public class BlocksManager : MonoBehaviour {
 
     private List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE" };
     private readonly int colorTimeChange = 0;
+    private Vector3 prevSpawnBarrier;
 
     void Start(){
-		thisTime = 0;
 		SpawnBarrier ();
 	}
 
 	void Update(){
 		if (GameController.gameState == GameController.GameState.GAME) {
-            thisTime++;
-            if(thisTime>spawnTime) {
-				SpawnBlocks ();
-				thisTime = 0;
-			}
+           
+           
 			if (SM.transform.childCount > 0) {
 				if (SM.transform.GetChild (0).position.y - previousSnakePos.y > minSpawnDist) {
                     SpawnBarrier ();
@@ -67,27 +62,25 @@ public class BlocksManager : MonoBehaviour {
             }
 
 
-            Vector3 SpawnPos = new Vector3(x, y, 0);
+            Vector3 spawnBarrier = new Vector3(x, y, 0);
             GameObject boxInstance;
 
 
-            if (isBarrierExist)
-            {
+
                 if (i == -2 || i == 2 || i == 0)
                 {
-                     boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+                    boxInstance = Instantiate(BlockWithoutBarrierPrefab, spawnBarrier, Quaternion.identity, transform);
 
                 }
                 else
                 {
-                     boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
+                    boxInstance = Instantiate(BlockPrefab, spawnBarrier, Quaternion.identity, transform);
 
                 }
-            }
-            else{
-                 boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
+           
+            SpawnBlocks();
 
-            }
+            prevSpawnBarrier = spawnBarrier;
             string currentScene = SceneManager.GetActiveScene().name;
             Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
 
@@ -139,7 +132,7 @@ public class BlocksManager : MonoBehaviour {
 		float y = 0;
 
 		if (SM.transform.childCount > 0) {
-			y = (int)SM.transform.GetChild (0).position.y + distBetweenBlocks * 2 + distanceSnakeBarrier;
+			y = (int)SM.transform.GetChild (0).position.y + distBetweenBlocks * 2 + distanceSnakeBarrier ;
 			if (Screen.height / Screen.width == 4 / 3) {
 				y *= 2;
 			}
@@ -150,32 +143,24 @@ public class BlocksManager : MonoBehaviour {
 		if (SimpleBoxPosition.Count == 0) {
 			SimpleBoxPosition.Add (SpawnPos);
 		} else {
-			for(int k= 0;k<SimpleBoxPosition.Count;k++){
-                if (SpawnPos.x - distBetweenBlocks < SimpleBoxPosition[k].x && SpawnPos.x + distBetweenBlocks > SimpleBoxPosition[k].x)
+
+            for (int k = 0; k < SimpleBoxPosition.Count; k++)
+            {
+                if (SpawnPos == SimpleBoxPosition[k] || prevSpawnBarrier == SimpleBoxPosition[k]  )   
                 {
                     canSpawnBlock = false;
-				}
-			}
-		}
+                }
+            }
+
+        }
 		GameObject boxInstance;
 		if (canSpawnBlock) {
 			SimpleBoxPosition.Add (SpawnPos);
-            if (isBarrierExist)
-            {
-                if (SimpleBoxPosition.Count % 2 != 0 || SimpleBoxPosition.Count == 1)
-                {
-                    boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
-                }
-                else
-                {
-                    boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
+           
+             
+             boxInstance = Instantiate(BlockPrefab, SpawnPos, Quaternion.identity, transform);
 
-                }
-            }
-            else{
-                boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
-
-            }
+           
 			boxInstance.tag = "SimpleBox";
             string currentScene = SceneManager.GetActiveScene().name;
             Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;

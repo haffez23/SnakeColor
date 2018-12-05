@@ -6056,15 +6056,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SM: {fileID: 1074591762}
-  distanceSnakeBarrier: 10
+  distanceSnakeBarrier: 6
   BlockPrefab: {fileID: 1021012123447272, guid: 2434a4f3a5a1649edae6b0aa3100e946,
     type: 2}
   BlockWithoutBarrierPrefab: {fileID: 1096814392544610, guid: b35e25ca288044272bc663e3a85084ab,
     type: 2}
-  minSpawnTime: 0.5
-  maxSpawnTime: 0.6
+  spawnTime: 150
   isBarrierExist: 1
-  minSpawnDist: 20
+  minSpawnDist: 14
   SimpleBoxPosition: []
 --- !u!4 &1666705850
 Transform:

@@ -1168,8 +1168,8 @@ MonoBehaviour:
   GC: {fileID: 1583326431}
   BodyParts: []
   minDistance: 0.16
-  initialAmount: 5
-  speed: 3
+  initialAmount: 20
+  speed: 5
   rotationSpeed: 3500
   LerpTimeX: 0.2
   LerpTimeY: 0.125
@@ -5903,7 +5903,6 @@ MonoBehaviour:
   BlockWithoutBarrierPrefab: {fileID: 1096814392544610, guid: b35e25ca288044272bc663e3a85084ab,
     type: 2}
   spawnTime: 100
-  isBarrierExist: 1
   minSpawnDist: 15
   SimpleBoxPosition: []
 --- !u!4 &1366916258

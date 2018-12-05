@@ -69,13 +69,16 @@ public class HitBoxBehaviour : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision){
-		if (SM.BodyParts.Count > 0) {
-			if (collision.transform.tag == "Food" && transform == SM.BodyParts [0]) {
-				for (int i = 0; i < collision.transform.GetComponent <FoodBehaviour>().foodAmount; i++) {
-					SM.AddBodyPart ();
-				}
-				Destroy (collision.transform.gameObject);
-			} 
-		}
-	}
+        if (SM.BodyParts.Count > 0)
+        {
+            if (collision.transform.tag == "Food" && transform == SM.BodyParts[0])
+            {
+                for (int i = 0; i < collision.transform.GetComponent<FoodBehaviour>().foodAmount; i++)
+                {
+                    SM.AddBodyPart();
+                }
+                Destroy(collision.transform.gameObject);
+            }
+        }
+    }
 }

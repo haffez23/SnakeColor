@@ -17,7 +17,6 @@ public class AutoDestroy : MonoBehaviour {
 	GameObject[] ToDestroy;
 	GameObject[] ToUnParent;
 
-	int maxLifeForRed;
 
 	Vector3 initialPos;
 	public bool dontMove;
@@ -39,10 +38,6 @@ public class AutoDestroy : MonoBehaviour {
 
 		StartCoroutine ("EnableSomeBars");
         string currentScene = SceneManager.GetActiveScene().name;
-        if(currentScene.Equals("LEVEL 1") || currentScene.Equals("LEVEL2"))
-        {
-            SetBoxColor();
-        }
 
 		initialPos = transform.position;
 		dontMove = false;
@@ -104,17 +99,7 @@ public class AutoDestroy : MonoBehaviour {
 		yield return null;
 	}
 
-	public void SetBoxColor(){
-		Color32 thisImageColor = GetComponent<SpriteRenderer> ().color;
-		if (lifeForColor > maxLifeForRed) {
-			thisImageColor = new Color32 (255, 0, 0, 255);
-		} else if (lifeForColor >= maxLifeForRed / 2 && lifeForColor <= maxLifeForRed) {
-			thisImageColor = new Color32 (255, (byte)(510 * (1 - (lifeForColor / maxLifeForRed))), 0, 255);
-		}else if (lifeForColor >= maxLifeForRed / 2 && lifeForColor <= maxLifeForRed) {
-			thisImageColor = new Color32 ((byte)(510 * (lifeForColor / maxLifeForRed)), 255, 0, 255);
-		}
-		GetComponent<SpriteRenderer> ().color = thisImageColor;
-	}
+	
 
 	void SetBoxSize(){
 //		float x;

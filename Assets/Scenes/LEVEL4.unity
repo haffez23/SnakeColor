@@ -323,7 +323,7 @@ MonoBehaviour:
     type: 2}
   BlockWithoutBarrierPrefab: {fileID: 1096814392544610, guid: b35e25ca288044272bc663e3a85084ab,
     type: 2}
-  spawnTime: 50
+  spawnTime: 100
   isBarrierExist: 1
   minSpawnDist: 10
   SimpleBoxPosition: []
@@ -5953,7 +5953,7 @@ MonoBehaviour:
   GC: {fileID: 605803364}
   BodyParts: []
   minDistance: 0.16
-  initialAmount: 5
+  initialAmount: 40
   speed: 3
   rotationSpeed: 3500
   LerpTimeX: 0.2
