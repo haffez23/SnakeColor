@@ -63,6 +63,7 @@ public class HitBoxBehaviour : MonoBehaviour {
             SM.SnakeParticle.Stop();
             SM.SnakeParticle.transform.position = collision.contacts[0].point;
             SM.SnakeParticle.Play();
+            GameController.SCORE++;
             Destroy(collision.gameObject);
         }
 

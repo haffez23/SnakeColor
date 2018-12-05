@@ -5953,7 +5953,7 @@ MonoBehaviour:
   GC: {fileID: 605803364}
   BodyParts: []
   minDistance: 0.16
-  initialAmount: 40
+  amount: 0
   speed: 3
   rotationSpeed: 3500
   LerpTimeX: 0.2
@@ -6241,7 +6241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335.19995, y: 849}
+  m_AnchoredPosition: {x: 145, y: 300}
   m_SizeDelta: {x: 409.6, y: 80.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880405966
@@ -6380,7 +6380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335.20016, y: 849}
+  m_AnchoredPosition: {x: 145, y: 300}
   m_SizeDelta: {x: 409.6, y: 80.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999364674

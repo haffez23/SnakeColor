@@ -40,12 +40,13 @@ public class GameController : MonoBehaviour {
     private readonly List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE"};
     private int colorTimeChange = 0;
     public int changetime;
-
+    bool playGame;
 
 
 
     void Start(){
         nextlevel = 0;
+        playGame = false;
         textColor = textGameObject.GetComponent<Text>();
 		SetMenu ();
 		SCORE = 0;
@@ -62,12 +63,17 @@ public class GameController : MonoBehaviour {
     }
 
     void Update(){
+        if(playGame)
         nextlevel++;
 		ScoreText.text= SCORE + "";
 		MenuScoreText.text= SCORE + "";
 
         if (Input.GetKey(KeyCode.D)/* || Input.GetTouch(0).phase == TouchPhase.Began*/)
+        {
             SetGame();
+            playGame = true;
+
+        }
         colorTimeChange++;
 
         if (SCORE > BESTSCORE) {
