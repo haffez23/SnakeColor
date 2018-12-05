@@ -100,7 +100,7 @@ public class SnakeMovement : MonoBehaviour
                 BodyParts[k].GetComponent<SpriteRenderer>().color = color;
             }
             PartsAmountTextMesh.color = color;
-            snakeColor = ColorList.getColorName(color);
+            snakeColor = textColor.text;
 
 
         }

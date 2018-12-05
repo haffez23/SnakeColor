@@ -14,10 +14,8 @@ public class BlocksManager : MonoBehaviour {
     public GameObject BlockWithoutBarrierPrefab;
 
 	[Header("Time to SpawnDelegate Management")]
-	public float minSpawnTime;
-	public float maxSpawnTime;
 	private float thisTime;
-	private float randomTime;
+    public float spawnTime;
     public bool isBarrierExist;
 
 	[Header("Snake Value for spawning")]
@@ -32,17 +30,14 @@ public class BlocksManager : MonoBehaviour {
     void Start(){
 		thisTime = 0;
 		SpawnBarrier ();
-		randomTime = Random.Range (minSpawnTime, maxSpawnTime);
 	}
 
 	void Update(){
 		if (GameController.gameState == GameController.GameState.GAME) {
-			if (thisTime < randomTime) {
-				thisTime += Time.deltaTime;
-			} else {
+            thisTime++;
+            if(thisTime>spawnTime) {
 				SpawnBlocks ();
 				thisTime = 0;
-				randomTime = Random.Range (minSpawnTime, maxSpawnTime);
 			}
 			if (SM.transform.childCount > 0) {
 				if (SM.transform.GetChild (0).position.y - previousSnakePos.y > minSpawnDist) {
@@ -104,7 +99,7 @@ public class BlocksManager : MonoBehaviour {
 
             }
 
-            else if (currentScene.Equals("LEVEL3"))
+            else 
             {
 
 
@@ -193,7 +188,7 @@ public class BlocksManager : MonoBehaviour {
 
             }
 
-            else if (currentScene.Equals("LEVEL3"))
+            else 
             {
 
                   for (int k = 0; k < colorsName.Count; k++)

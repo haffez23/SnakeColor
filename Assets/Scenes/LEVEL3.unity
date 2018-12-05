@@ -1177,6 +1177,7 @@ MonoBehaviour:
   PartsAmountTextMesh: {fileID: 860398332}
   SnakeParticle: {fileID: 1298817945}
   textColor: {fileID: 291848316}
+  snakeColor: 
 --- !u!4 &1150140426
 Transform:
   m_ObjectHideFlags: 0
@@ -5901,10 +5902,9 @@ MonoBehaviour:
     type: 2}
   BlockWithoutBarrierPrefab: {fileID: 1096814392544610, guid: b35e25ca288044272bc663e3a85084ab,
     type: 2}
-  minSpawnTime: 0.5
-  maxSpawnTime: 0.6
-  isBarrierExist: 0
-  minSpawnDist: 20
+  spawnTime: 100
+  isBarrierExist: 1
+  minSpawnDist: 15
   SimpleBoxPosition: []
 --- !u!4 &1366916258
 Transform:

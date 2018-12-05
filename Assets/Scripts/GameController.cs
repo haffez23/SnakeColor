@@ -163,23 +163,20 @@ public class GameController : MonoBehaviour {
 
     public void AddColorToTextColor()
     {
+        string currentScene = SceneManager.GetActiveScene().name;
         Color32 thisImageColor = textColor.color;
+            int randomIndex = Random.Range(0, colorsName.Count);
+            textColor.text = colorsName[randomIndex];
+            print(ColorList.getColor(textColor.text));
+        if(currentScene.Equals("LEVEL3"))
+            thisImageColor = ColorList.getColor(textColor.text);
+        else if(currentScene.Equals("LEVEL4"))
+        {
+            int randomColor = Random.Range(0, colors.Count);
+            thisImageColor = colors[randomColor];
 
-
-
-
-
-                int randomIndex = Random.Range(0, colorsName.Count);
-
-
-        print(colorsName[randomIndex]);
-            
-        textColor.text = colorsName[randomIndex];
-        print(ColorList.getColor(textColor.text));
-        thisImageColor = ColorList.getColor(textColor.text);
-            textColor.color = thisImageColor;
-
-
+        }
+        textColor.color = thisImageColor;
 
 
     }

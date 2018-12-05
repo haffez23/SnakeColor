@@ -36,7 +36,7 @@ public class HitBoxBehaviour : MonoBehaviour {
 
 			SM.BodyParts.Remove (SM.BodyParts [0]);
 
-		} else if (collision.transform.tag == "SimpleBox" && transform == SM.BodyParts [0]) {
+		} else if (collision.transform.tag == "SimpleBox" && transform == SM.BodyParts [0] && !collision.gameObject.name.Equals(SM.transform.GetComponent<SnakeMovement>().snakeColor)) {
 			SM.SnakeParticle.Stop ();
 			SM.SnakeParticle.transform.position = collision.contacts [0].point;
 			SM.SnakeParticle.Play ();
@@ -60,6 +60,9 @@ public class HitBoxBehaviour : MonoBehaviour {
 			collision.transform.GetComponent <AutoDestroy> ().dontMove = true;
         }else if(collision.gameObject.name.Equals(SM.transform.GetComponent<SnakeMovement>().snakeColor))
         {
+            SM.SnakeParticle.Stop();
+            SM.SnakeParticle.transform.position = collision.contacts[0].point;
+            SM.SnakeParticle.Play();
             Destroy(collision.gameObject);
         }
 
