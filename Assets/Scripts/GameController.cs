@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 	public static int SCORE;
 	public static int BESTSCORE;
     public int level=1;
-    int nextlevel =1900 ;
+    int nextlevel =0 ;
 
 	[Header("SomeBool")]
 	bool speedAdded;
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour {
 		ScoreText.text= SCORE + "";
 		MenuScoreText.text= SCORE + "";
 
-        if (Input.GetKey(KeyCode.D) /*|| Input.GetTouch(0).phase == TouchPhase.Began*/)
+        if (Input.GetKey(KeyCode.D)/* || Input.GetTouch(0).phase == TouchPhase.Began*/)
             SetGame();
         colorTimeChange++;
 
@@ -76,6 +76,7 @@ public class GameController : MonoBehaviour {
 		}
         if (nextlevel == 2000)
         {
+            print("2000");
             switch (level)
             {
                 case 1: 
