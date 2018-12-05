@@ -700,7 +700,7 @@ MonoBehaviour:
   rotationSpeed: 3500
   LerpTimeX: 0.2
   LerpTimeY: 0.125
-  BodyPrefab: {fileID: 1668952076767714, guid: b81aa911cdbc14c65b5442e319142c80, type: 2}
+  BodyPrefab: {fileID: 1318408792555184, guid: b81aa911cdbc14c65b5442e319142c80, type: 2}
   PartsAmountTextMesh: {fileID: 1314446277}
   SnakeParticle: {fileID: 1646269693}
   textColor: {fileID: 0}
@@ -6061,8 +6061,7 @@ MonoBehaviour:
     type: 2}
   BlockWithoutBarrierPrefab: {fileID: 1096814392544610, guid: b35e25ca288044272bc663e3a85084ab,
     type: 2}
-  minSpawnTime: 0.5
-  maxSpawnTime: 0.6
+  spawnTime: 0
   isBarrierExist: 1
   minSpawnDist: 20
   SimpleBoxPosition: []
@@ -6176,8 +6175,8 @@ MonoBehaviour:
   ScoreText: {fileID: 811622722}
   MenuScoreText: {fileID: 1583124172}
   BestScoreText: {fileID: 152055286}
-  level: 1
-  textGameObject: {fileID: 0}
+  level: 2
+  textGameObject: {fileID: 866038917}
   changetime: 0
 --- !u!4 &1940369040
 Transform:

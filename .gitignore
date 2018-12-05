@@ -1,0 +1,12 @@
+
+\.vs/SnakeColor/xs/sqlite3/
+
+\.DS_Store
+
+Assembly-CSharp\.csproj
+
+Library/
+
+*.apk
+
+Temp/
