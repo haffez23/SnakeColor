@@ -14,7 +14,6 @@ public class SnakeMovement : MonoBehaviour
     public List<Transform> BodyParts = new List<Transform>();
     public float minDistance = 0.25f;
     public static int initialAmount;
-    public int amount;
     public float speed = 1;
     public float rotationSpeed = 50;
     public float LerpTimeX;
@@ -27,7 +26,6 @@ public class SnakeMovement : MonoBehaviour
     public TextMesh PartsAmountTextMesh;
 
     [Header("Private fields")]
-    private float distance;
     private Vector3 refVelocity;
     private Transform curBodyPart;
     private Transform prevBodyPart;
@@ -49,13 +47,14 @@ public class SnakeMovement : MonoBehaviour
     public  string snakeColor;
 
 
+
      void Awake()
     {
+
         currentScene = SceneManager.GetActiveScene().name;
-        if (currentScene.Equals("LEVEL1"))
+        if (currentScene.Equals("LEVEL1") )
         {
             SetInitialAmount(4);
-            amount = initialAmount;
         }
 
     }
@@ -95,6 +94,7 @@ public class SnakeMovement : MonoBehaviour
             if (BodyParts.Count == 0)
             {
                 GC.SetGameover();
+                GameController.nextlevel = 0;
             }
         }
         if (PartsAmountTextMesh != null)
@@ -196,7 +196,6 @@ public class SnakeMovement : MonoBehaviour
                 curBodyPart = BodyParts[i];
                 prevBodyPart = BodyParts[i - 1];
 
-                distance = Vector3.Distance(prevBodyPart.position, curBodyPart.position);
                 Vector3 newPos = prevBodyPart.position;
                 newPos.z = BodyParts[0].position.z;
 

@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 	public static int SCORE;
 	public static int BESTSCORE;
     public int level=1;
-    int nextlevel ;
+    public static int nextlevel ;
 
 	[Header("SomeBool")]
 	bool speedAdded;
@@ -40,19 +40,20 @@ public class GameController : MonoBehaviour {
     private readonly List<string> colorsName = new List<string> { "RED", "MAGENTA", "BLUE", "GREEN", "YELLOW", "CYAN", "WHITE"};
     private int colorTimeChange = 0;
     public int changetime;
-    bool playGame;
+    string currentScene ;
+
 
 
 
     void Start(){
+        currentScene = SceneManager.GetActiveScene().name;
         nextlevel = 0;
-        playGame = false;
         textColor = textGameObject.GetComponent<Text>();
 		SetMenu ();
-		SCORE = 0;
 		speedAdded = false;
 		BESTSCORE = PlayerPrefs.GetInt ("BESTSCORE");
         InvokeColorChange();
+        textColor.enabled &= (!currentScene.Equals("LEVEL2") && !currentScene.Equals("LEVEL1"));
 
     }
 
@@ -63,16 +64,17 @@ public class GameController : MonoBehaviour {
     }
 
     void Update(){
-        if(playGame)
-        nextlevel++;
-		ScoreText.text= SCORE + "";
-		MenuScoreText.text= SCORE + "";
+        print(nextlevel);
+        if (GameState.GAME == gameState)
+            nextlevel++;
+
+
+            ScoreText.text="SCORE: "+ SCORE ;
+        MenuScoreText.text="SCORE: " +SCORE ;
 
         if (Input.GetKey(KeyCode.D)/* || Input.GetTouch(0).phase == TouchPhase.Began*/)
         {
             SetGame();
-            playGame = true;
-
         }
         colorTimeChange++;
 
@@ -84,7 +86,7 @@ public class GameController : MonoBehaviour {
 				speedAdded = true;
 			}
 		}
-        if (nextlevel == levelLife)
+        if (nextlevel == levelLife && GameState.GAME == gameState)
         {
             switch (level)
             {
@@ -92,18 +94,22 @@ public class GameController : MonoBehaviour {
                     {
                         SM.GetComponent<SnakeMovement>().SetInitialAmount(SM.BodyParts.Count);
                         SceneManager.LoadScene("LEVEL2", LoadSceneMode.Single);
+                        nextlevel = 0;
                         break;
                     }
                 case 2:{
                         SM.GetComponent<SnakeMovement>().SetInitialAmount(SM.BodyParts.Count);
                         SceneManager.LoadScene("LEVEL3", LoadSceneMode.Single);
+                        nextlevel = 0;
                         break;
-
                     }
 
                 case 3:
-                    SceneManager.LoadScene("LEVEL4", LoadSceneMode.Single);
-                    break;
+                    {
+                        SM.GetComponent<SnakeMovement>().SetInitialAmount(SM.BodyParts.Count);
+                        SceneManager.LoadScene("LEVEL4", LoadSceneMode.Single);
+                        break;
+                    }
                 case 4:
                     SceneManager.LoadScene("LEVEL1", LoadSceneMode.Single);
                     break;
@@ -145,8 +151,13 @@ public class GameController : MonoBehaviour {
 		DisableCG (Menu_CG);
 		DisableCG (GAME_CG);
 		EnableCG (GAMEOVER_CG);
+        SM.SetInitialAmount(4);
+        SCORE = 0;
 
-		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Bar")) {
+
+
+
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Bar")) {
 			Destroy (g);
 		}
 
@@ -189,20 +200,20 @@ public class GameController : MonoBehaviour {
 
     public void AddColorToTextColor()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-        Color32 thisImageColor = textColor.color;
+
+            Color32 thisImageColor = textColor.color;
             int randomIndex = Random.Range(0, colorsName.Count);
             textColor.text = colorsName[randomIndex];
-            print(ColorList.getColor(textColor.text));
-        if(currentScene.Equals("LEVEL3"))
-            thisImageColor = ColorList.getColor(textColor.text);
-        else if(currentScene.Equals("LEVEL4"))
-        {
-            int randomColor = Random.Range(0, colors.Count);
-            thisImageColor = colors[randomColor];
+            if (currentScene.Equals("LEVEL3"))
+                thisImageColor = ColorList.getColor(textColor.text);
+            else if (currentScene.Equals("LEVEL4"))
+            {
+                int randomColor = Random.Range(0, colors.Count);
+                thisImageColor = colors[randomColor];
 
-        }
-        textColor.color = thisImageColor;
+            }
+            textColor.color = thisImageColor;
+
 
 
     }
