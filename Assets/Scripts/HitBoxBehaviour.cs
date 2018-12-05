@@ -17,13 +17,13 @@ public class HitBoxBehaviour : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision){
-		if (collision.transform.tag == "Box" && transform == SM.BodyParts [0]) {
+        if (collision.transform.tag == "Box" && transform == SM.BodyParts [0] && !collision.gameObject.name.Equals(SM.transform.GetComponent<SnakeMovement>().snakeColor)) {
 			if (SM.BodyParts.Count > 1 && SM.BodyParts [1] != null) {
 				SM.PartsAmountTextMesh.transform.parent = SM.BodyParts [1];
 				SM.PartsAmountTextMesh.transform.position = SM.BodyParts [1].position + new Vector3 (0, 0.5f, 0);
 			} else if (SM.BodyParts.Count == 1) {
 				SM.PartsAmountTextMesh.transform.parent = null;
-            }
+			}
 
 			SM.SnakeParticle.Stop ();
 			SM.SnakeParticle.transform.position = collision.contacts [0].point;
@@ -58,7 +58,10 @@ public class HitBoxBehaviour : MonoBehaviour {
 		} else if (collision.transform.tag == "SimpleBox" && transform != SM.BodyParts [0]) {
 			Physics2D.IgnoreCollision (transform.GetComponent<Collider2D> (), collision.transform.GetComponent<Collider2D> ());
 			collision.transform.GetComponent <AutoDestroy> ().dontMove = true;
-		}
+        }else if(collision.gameObject.name.Equals(SM.transform.GetComponent<SnakeMovement>().snakeColor))
+        {
+            Destroy(collision.gameObject);
+        }
 
 	}
 

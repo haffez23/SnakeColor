@@ -43,6 +43,7 @@ public class SnakeMovement : MonoBehaviour
     [Header("Color parametres")]
     public Text textColor;
     private Color32 color;
+    public  string snakeColor;
 
 
 
@@ -99,6 +100,8 @@ public class SnakeMovement : MonoBehaviour
                 BodyParts[k].GetComponent<SpriteRenderer>().color = color;
             }
             PartsAmountTextMesh.color = color;
+            snakeColor = ColorList.getColorName(color);
+
 
         }
     }

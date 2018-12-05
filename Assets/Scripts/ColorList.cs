@@ -38,4 +38,25 @@ public class ColorList : MonoBehaviour
                 return red;
         }
     }
+
+    public static string getColorName(Color c)
+    {
+
+        if (c == red)
+            return "RED";
+        else if (c == yellow)
+            return "YELLOW";
+        else if (c == magenta)
+            return "MAGENTA";
+        else if (c == blue)
+            return "BLUE";
+        else if (c == white)
+            return "WHITE";
+        else if (c == cyan)
+            return "CYAN";
+        else if (c == green)
+            return "GREEN";
+        else
+            return "RED";
+    }
 }

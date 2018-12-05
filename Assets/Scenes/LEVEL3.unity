@@ -1168,12 +1168,12 @@ MonoBehaviour:
   GC: {fileID: 1583326431}
   BodyParts: []
   minDistance: 0.16
-  initialAmount: 100
+  initialAmount: 5
   speed: 3
   rotationSpeed: 3500
   LerpTimeX: 0.2
   LerpTimeY: 0.125
-  BodyPrefab: {fileID: 1668952076767714, guid: b81aa911cdbc14c65b5442e319142c80, type: 2}
+  BodyPrefab: {fileID: 1318408792555184, guid: b81aa911cdbc14c65b5442e319142c80, type: 2}
   PartsAmountTextMesh: {fileID: 860398332}
   SnakeParticle: {fileID: 1298817945}
   textColor: {fileID: 291848316}
@@ -5877,7 +5877,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1366916258}
   - component: {fileID: 1366916257}
-  - component: {fileID: 1366916259}
   m_Layer: 0
   m_Name: BlockManager
   m_TagString: Untagged
@@ -5920,18 +5919,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1366916259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1366916256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51856c0992b26484c8316d65f8812dc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blocksManager: {fileID: 1366916257}
 --- !u!1 &1583326430
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,7 +88,6 @@ public class GameController : MonoBehaviour {
             }
 
         }
-        print(colorTimeChange);
         if( colorTimeChange>changetime )
         {
             InvokeColorChange();

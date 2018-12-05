@@ -115,6 +115,8 @@ public class BlocksManager : MonoBehaviour {
                     colorsName[k] = colorsName[randomIndex];
                     colorsName[randomIndex] = temp;
                     thisImageColor = ColorList.getColor(colorsName[randomIndex]);
+                    boxInstance.name = temp;
+
 
                 }
 
@@ -179,7 +181,6 @@ public class BlocksManager : MonoBehaviour {
                 boxInstance = Instantiate(BlockWithoutBarrierPrefab, SpawnPos, Quaternion.identity, transform);
 
             }
-            boxInstance.name = "SimpleBox";
 			boxInstance.tag = "SimpleBox";
             string currentScene = SceneManager.GetActiveScene().name;
             Color32 thisImageColor = boxInstance.GetComponent<SpriteRenderer>().color;
@@ -195,13 +196,15 @@ public class BlocksManager : MonoBehaviour {
             else if (currentScene.Equals("LEVEL3"))
             {
 
-                for (int k = 0; k < colorsName.Count; k++)
+                  for (int k = 0; k < colorsName.Count; k++)
                 {
                     string temp = colorsName[k];
                     int randomIndex = Random.Range(k, colorsName.Count);
                     colorsName[k] = colorsName[randomIndex];
                     colorsName[randomIndex] = temp;
                     thisImageColor = ColorList.getColor(colorsName[randomIndex]);
+                    boxInstance.name = temp;
+
 
                 }
 

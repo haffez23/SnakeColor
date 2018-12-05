@@ -127,8 +127,8 @@ public class AutoDestroy : MonoBehaviour {
 			Destroy (collision.transform.gameObject);
 		}else if(transform.tag == "SimpleBox" && collision.transform.tag == "SimpleBox"){
 			Destroy (collision.transform.gameObject);
-		}
-	}
+        }
+    }
 
 	private void OnTriggerStay2d(Collider2D collision){
 		if (collision.transform.tag == "SimpleBox" && transform.tag == "Box") {
